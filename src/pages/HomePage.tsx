@@ -1,8 +1,6 @@
 import React from 'react';
 import TabPanelWrapper from 'components/TabPanelWrapper';
 
-import './HomePage.scss';
-
 type TProps = {
   tabId: string;
 };

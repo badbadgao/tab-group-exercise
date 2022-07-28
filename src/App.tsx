@@ -1,6 +1,6 @@
 import React from 'react';
 import Tabs from 'components/Tabs';
-import HomePage from 'pages/HomePage/HomePage';
+import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
 import ProductsPage from 'pages/ProductsPage';
 

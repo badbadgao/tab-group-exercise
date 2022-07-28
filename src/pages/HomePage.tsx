@@ -1,9 +1,13 @@
 import React from 'react';
-import './HomePage.scss';
+import TabPanelWrapper from 'components/TabPanelWrapper';
 
-const HomePage = (): JSX.Element => {
+type TProps = {
+  tabId: string;
+};
+
+const HomePage = ({ tabId }: TProps): JSX.Element => {
   return (
-    <main className="homepage">
+    <TabPanelWrapper tabId={tabId}>
       <h1>This is home page</h1>
       <p>
         Learn to use the accessibility semantics defined by the Accessible Rich Internet Application (ARIA)
@@ -11,7 +15,7 @@ const HomePage = (): JSX.Element => {
         common design patterns and widgets. It provides design patterns and functional examples complemented by in-depth
         guidance for fundamental practices.
       </p>
-    </main>
+    </TabPanelWrapper>
   );
 };
 

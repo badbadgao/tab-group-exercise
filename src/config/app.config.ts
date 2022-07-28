@@ -5,3 +5,7 @@ export const tabs: TTab[] = [
   { id: 'products', label: 'Products', link: '/products' },
   { id: 'about', label: 'About', link: '/about' },
 ];
+
+export const getTabId = (link: string): string => {
+  return tabs.find((tab) => tab.link === link)?.id || 'id-not-found';
+};

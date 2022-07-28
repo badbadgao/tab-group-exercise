@@ -1,0 +1,76 @@
+.tabs {
+  width: 100%;
+  height: 64px;
+  background-color: #3f4c91;
+  padding: 0 64px;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+}
+
+[role="tab"],
+[role="tab"]:focus,
+[role="tab"]:hover {
+  cursor: pointer;
+  background-color: #3f4c91;
+  list-style: none;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: none;
+  position: relative;
+  margin: 0;
+  overflow: visible;
+  outline: none;
+  font-weight: bold;
+}
+
+[role="tablist"] {
+  min-width: 550px;
+}
+
+[role="tab"][aria-selected="true"] {
+  margin-top: 0;
+  background: #8c9ae6;
+  border-bottom: 2px solid #ee6344;
+}
+
+[role="tab"][aria-selected="false"] {
+  border-bottom: none;
+}
+
+[role="tab"] span {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  padding: 2px;
+  border: 2px solid transparent;
+  &:hover {
+    border: 2px solid rgb(150, 150, 236);
+    border-radius: 2px;
+  }
+}
+
+[role="tabpanel"] {
+  padding: 5px;
+  border: 2px solid hsl(219deg 1% 72%);
+  border-radius: 0 5px 5px;
+  background: hsl(220deg 43% 99%);
+  min-height: 10em;
+  min-width: 550px;
+  overflow: auto;
+}
+
+[role="tabpanel"].is-hidden {
+  display: none;
+}
+
+[role="tabpanel"] p {
+  margin: 0;
+}

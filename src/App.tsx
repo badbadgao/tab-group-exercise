@@ -7,7 +7,7 @@ import ProductsPage from 'pages/ProductsPage';
 import './css/index.css';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { tabs } from 'config/app.config';
+import { tabs, getTabId } from 'config/app.config';
 
 const App: React.FC = () => {
   return (
@@ -15,13 +15,13 @@ const App: React.FC = () => {
       <Tabs tabs={tabs} />
       <Switch>
         <Route path="/home">
-          <HomePage />
+          <HomePage tabId={getTabId('/home')} />
         </Route>
         <Route path="/about">
-          <AboutPage />
+          <AboutPage tabId={getTabId('/about')} />
         </Route>
         <Route path="/products">
-          <ProductsPage />
+          <ProductsPage tabId={getTabId('/products')} />
         </Route>
         <Route path="*">
           <Redirect to="/home" />

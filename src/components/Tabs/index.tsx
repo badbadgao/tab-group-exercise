@@ -42,7 +42,7 @@ const Tabs = ({ tabs }: TProps): JSX.Element => {
    * When left arrow key is clicked, change tab to the next tab on the left. If the current active
    * tab is already the first tab, then change tab to the last tab
    */
-  const onKeyDown = (e: React.KeyboardEvent<HTMLUListElement>): void => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     let isKeyDownHandled = false;
     switch (e.code) {
       case 'ArrowRight':
@@ -76,7 +76,7 @@ const Tabs = ({ tabs }: TProps): JSX.Element => {
 
   return (
     <nav className="tabs">
-      <ul role="tablist" onKeyDown={onKeyDown}>
+      <div role="tablist" onKeyDown={onKeyDown} aria-labelledby="nav-tablist">
         {tabs?.map((tab, tabIndex) => (
           <Tab
             key={tab.id}
@@ -86,7 +86,7 @@ const Tabs = ({ tabs }: TProps): JSX.Element => {
             selectedTabIndex={selectedTabIndex}
           />
         ))}
-      </ul>
+      </div>
     </nav>
   );
 };

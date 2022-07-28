@@ -1,10 +1,16 @@
 import React from 'react';
 
-const AboutPage = (): JSX.Element => {
+import TabPanelWrapper from 'components/TabPanelWrapper';
+
+type TProps = {
+  tabId: string;
+};
+
+const AboutPage = ({ tabId }: TProps): JSX.Element => {
   return (
-    <main>
+    <TabPanelWrapper tabId={tabId}>
       <h1>This is about page</h1>
-    </main>
+    </TabPanelWrapper>
   );
 };
 

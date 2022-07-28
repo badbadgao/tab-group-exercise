@@ -1,10 +1,15 @@
 import React from 'react';
+import TabPanelWrapper from 'components/TabPanelWrapper';
 
-const ProductsPage = (): JSX.Element => {
+type TProps = {
+  tabId: string;
+};
+
+const ProductsPage = ({ tabId }: TProps): JSX.Element => {
   return (
-    <main>
+    <TabPanelWrapper tabId={tabId}>
       <h1>This is products page</h1>
-    </main>
+    </TabPanelWrapper>
   );
 };
 

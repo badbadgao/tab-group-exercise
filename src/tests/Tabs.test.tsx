@@ -14,6 +14,7 @@ test('check the whole app with 3 tabs', () => {
   ];
 
   const history = createMemoryHistory();
+  history.push('/tab1');
   const tabsElement = render(
     <Router history={history}>
       <Tabs tabs={tabArray} />
@@ -27,7 +28,7 @@ test('check the whole app with 3 tabs', () => {
   const tabList = screen.getAllByRole('tablist');
   expect(tabList).toHaveLength(1);
 
-  // 3 element with the role 'tablist'
+  // 3 elements with the role 'tab'
   const tabs = screen.getAllByRole('tab');
   expect(tabs).toHaveLength(3);
 
@@ -36,7 +37,7 @@ test('check the whole app with 3 tabs', () => {
   expect(activeTabs).toHaveLength(1);
   expect(activeTabs[0]).toHaveTextContent('Tab1');
 
-  // Only products and about tab with not selected status
+  // Only tab2 and tab3 are not selected
   const inActiveTabs = screen.getAllByRole('tab', { selected: false });
   expect(inActiveTabs).toHaveLength(2);
   expect(inActiveTabs[0]).toHaveTextContent('Tab2');

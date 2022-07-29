@@ -13,25 +13,24 @@ type TProps = {
 const Tabs = ({ tabs }: TProps): JSX.Element => {
   const FIRST_TAB_INDEX = 0;
   const LAST_TAB_INDEX = tabs.length - 1;
+  const UNKNOW_TAB_INDEX = -1;
 
   const history = useHistory();
   const location = useLocation();
-
-  // Find the tab that matches the url, if no tab matches the url, then change the tab index to 0
-  // which is the first tab.
-  let tabIndex = 0;
-  tabs.find((tab, index) => {
-    if (location.pathname === tab.link) {
-      tabIndex = index;
-      return true;
-    }
-  });
-
-  const [selectedTabIndex, setSelectedTabIndex] = useState<number>(tabIndex);
+  const [selectedTabIndex, setSelectedTabIndex] = useState<number>(UNKNOW_TAB_INDEX);
 
   useEffect(() => {
-    history.push(tabs[selectedTabIndex].link);
-  }, [selectedTabIndex]);
+    let tabIndex = UNKNOW_TAB_INDEX;
+    tabs.find((tab, index) => {
+      // check if the location path name matches the tab link or tab link with extra / at the end
+      if (location.pathname === tab.link || location.pathname === tab.link + '/') {
+        tabIndex = index;
+        return true;
+      }
+    });
+
+    setSelectedTabIndex(tabIndex);
+  }, [location.pathname]);
 
   /**
    * keyboard key down event handler
@@ -46,13 +45,15 @@ const Tabs = ({ tabs }: TProps): JSX.Element => {
     let isKeyDownHandled = false;
     switch (e.code) {
       case 'ArrowRight':
-        setSelectedTabIndex((previousTabIndex) =>
-          previousTabIndex < tabs?.length - 1 ? previousTabIndex + 1 : FIRST_TAB_INDEX,
-        );
+        const tabIndexOnTheRight = selectedTabIndex < tabs?.length - 1 ? selectedTabIndex + 1 : FIRST_TAB_INDEX;
+        setSelectedTabIndex(tabIndexOnTheRight);
+        history.push(tabs[tabIndexOnTheRight].link);
         isKeyDownHandled = true;
         break;
       case 'ArrowLeft':
-        setSelectedTabIndex((previousTabIndex) => (previousTabIndex > 0 ? previousTabIndex - 1 : LAST_TAB_INDEX));
+        const tabIndexOnTheLeft = selectedTabIndex > 0 ? selectedTabIndex - 1 : LAST_TAB_INDEX;
+        setSelectedTabIndex(tabIndexOnTheLeft);
+        history.push(tabs[tabIndexOnTheLeft].link);
         isKeyDownHandled = true;
         break;
       default:
@@ -72,6 +73,7 @@ const Tabs = ({ tabs }: TProps): JSX.Element => {
    */
   const onTabSelectChange = (tabIndex: number): void => {
     setSelectedTabIndex(tabIndex);
+    history.push(tabs[tabIndex].link);
   };
 
   return (

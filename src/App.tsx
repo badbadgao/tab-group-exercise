@@ -3,6 +3,7 @@ import Tabs from 'components/Tabs';
 import HomePage from 'pages/HomePage';
 import AboutPage from 'pages/AboutPage';
 import ProductsPage from 'pages/ProductsPage';
+import PageNotFound from 'pages/PageNotFound';
 
 import './css/index.css';
 
@@ -14,18 +15,19 @@ const App: React.FC = () => {
     <div className="app">
       <Tabs tabs={tabs} />
       <Switch>
-        <Route path="/home">
+        <Route exact path="/home">
           <HomePage tabId={getTabId('/home')} />
         </Route>
-        <Route path="/about">
+        <Route exact path="/about">
           <AboutPage tabId={getTabId('/about')} />
         </Route>
-        <Route path="/products">
+        <Route exact path="/products">
           <ProductsPage tabId={getTabId('/products')} />
         </Route>
-        <Route path="*">
+        <Route exact path="/">
           <Redirect to="/home" />
         </Route>
+        <Route component={PageNotFound} />
       </Switch>
     </div>
   );

@@ -191,3 +191,54 @@ test('tab keydown change - arrow left key', () => {
   expect(tabPanels3[0]).toHaveAttribute('aria-labelledby', 'tab-home');
   expect(tabPanels3[0]).toHaveTextContent(/This is home page/i);
 });
+
+test('test landing on Products page', () => {
+  const history = createMemoryHistory();
+  history.push('/products');
+  render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  );
+
+  const activeTab = screen.getByRole('tab', { selected: true });
+  expect(activeTab).toHaveTextContent('Products');
+  const inActiveTabs = screen.getAllByRole('tab', { selected: false });
+  expect(inActiveTabs).toHaveLength(2);
+  const homeTab = inActiveTabs[0];
+  const aboutTab = inActiveTabs[1];
+  expect(homeTab).toHaveTextContent('Home');
+  expect(aboutTab).toHaveTextContent('About');
+});
+
+test('test landing on About page', () => {
+  const history = createMemoryHistory();
+  history.push('/about');
+  render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  );
+
+  const activeTab = screen.getByRole('tab', { selected: true });
+  expect(activeTab).toHaveTextContent('About');
+  const inActiveTabs = screen.getAllByRole('tab', { selected: false });
+  expect(inActiveTabs).toHaveLength(2);
+  const homeTab = inActiveTabs[0];
+  const aboutTab = inActiveTabs[1];
+  expect(homeTab).toHaveTextContent('Home');
+  expect(aboutTab).toHaveTextContent('Products');
+});
+
+test('test landing on a bad page', () => {
+  const history = createMemoryHistory();
+  history.push('/a/bad/page');
+  render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  );
+
+  const activeTab = screen.queryByRole('tab', { selected: true });
+  expect(activeTab).toBeNull;
+});

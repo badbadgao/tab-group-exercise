@@ -241,4 +241,7 @@ test('test landing on a bad page', () => {
 
   const activeTab = screen.queryByRole('tab', { selected: true });
   expect(activeTab).toBeNull;
+
+  const notFoundPageTextElement = screen.getByText('Opps! Page not found!');
+  expect(notFoundPageTextElement).toBeInTheDocument();
 });

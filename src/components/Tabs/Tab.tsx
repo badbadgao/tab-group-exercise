@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { TTab } from './types';
 
@@ -10,9 +10,18 @@ type TProps = {
 };
 
 const Tab = ({ tab, tabIndex, selectedTabIndex, onTabSelectChange }: TProps): JSX.Element => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const selected = selectedTabIndex === tabIndex;
+
+  useEffect(() => {
+    // When the tab is selected, make this tab focused, doing this is mainly to make the keydown work
+    // in Safari
+    selected && buttonRef.current && buttonRef.current.focus();
+  }, [buttonRef, selected]);
+
   return (
     <button
+      ref={buttonRef}
       id={`tab-${tab.id}`}
       type="button"
       role="tab"

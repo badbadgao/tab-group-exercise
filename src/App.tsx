@@ -5,7 +5,7 @@ import AboutPage from 'pages/AboutPage';
 import ProductsPage from 'pages/ProductsPage';
 import PageNotFound from 'pages/PageNotFound';
 
-import './css/index.css';
+import 'css/index.css';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { tabs, getTabId } from 'config/app.config';

@@ -1,4 +1,4 @@
-# Welcome tab group projects
+# Welcome to tab group project
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is fully compliant with [the WAI ARIA specification](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel).
 
 The project is to create a list of tabs and the displaying tab panel can be switched by clicking
